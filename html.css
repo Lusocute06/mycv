@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Gia Phát - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            position: relative;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .personal-info h1 {
+            font-size: 2.8em;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            margin-bottom: 12px;
+            font-size: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-row:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #e3f2fd;
+        }
+
+        .info-value {
+            color: white;
+            font-weight: 500;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 140px;
+            background: #ddd;
+            border: 4px solid white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            background-image: url('494329322_1007939578201022_652632624288730663_n.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+            border-radius: 15px;
+            z-index: -1;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Main Content */
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+            text-transform: uppercase;
+        }
+
+        .section-content {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Experience and Education */
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .experience-item:last-child,
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .date-range {
+            font-weight: bold;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .position {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .skill-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .skill-level {
+            color: #666;
+        }
+
+        /* Awards */
+        .award-item {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .award-item:last-child {
+            border-bottom: none;
+        }
+
+        .award-year {
+            font-weight: bold;
+            color: #666;
+            display: inline-block;
+            width: 60px;
+        }
+
+        .award-title {
+            color: #2c3e50;
+        }
+
+        /* Interests and Projects */
+        .interests-list, .projects-list {
+            list-style: none;
+        }
+
+        .interests-list li, .projects-list li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .interests-list li:before, .projects-list li:before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .project-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 3px solid #3498db;
+        }
+
+        .project-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .project-year {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Contact Links */
+        .contact-links {
+            list-style: none;
+        }
+
+        .contact-links li {
+            margin-bottom: 5px;
+        }
+
+        .contact-links a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Two Column Layout for larger sections */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .personal-info h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-content">
+                <div class="personal-info">
+                    <h1>Nguyễn Gia Phát</h1>
+                    <div class="info-row">
+                        <span class="info-label">Ngày sinh:</span>
+                        <span class="info-value">25/06/2006</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Giới tính:</span>
+                        <span class="info-value">Nam</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Điện thoại:</span>
+                        <span class="info-value">(+84) 935195168</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value">phat195168@gmail.com</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Địa chỉ:</span>
+                        <span class="info-value">Đà Nẵng, Việt Nam</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Website:</span>
+                        <span class="info-value">https://www.facebook.com/Lusocute06/</span>
+                    </div>
+                </div>
+                <div class="profile-photo"></div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Career Objective -->
+            <div class="section">
+                <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
+                <div class="section-content">
+                    <p>Là một sinh viên đã hoàn thành chương trình chủng chỉ Doanh nghiệp của FPTU. Em mong muốn mình sẽ được làm việc với vị trí Fullstack Developer, có thể phát huy những kiến thức đã được trang bị và những trình độ học từ những kinh nghiệm thực tế để phát triển bản thân, cũng như hoàn thành tốt nhất công việc được giao.</p>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <h2 class="section-title">Học vấn</h2>
+                <div class="section-content">
+                    <div class="education-item">
+                        <div class="date-range">05/2025 - 05/2026</div>
+                        <div class="position">FPTU</div>
+                        <div class="description">
+                            Đang học năm nhất chuyên ngành AI.<br>
+                            GPA: 9 / 10
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="date-range">08/2026 - 09/2027</div>
+                        <div class="position">Cử nhân - DHFPT</div>
+                        <div class="description">
+                            Chuyên ngành: AI.<br>
+                            GPA: 3.2 / 4
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="section">
+                <h2 class="section-title">Kinh nghiệm làm việc</h2>
+                <div class="section-content">
+                    <div class="experience-item">
+                        <div class="date-range">05/2025 - Hiện tại</div>
+                        <div class="company">Công ty FPT Software</div>
+                        <div class="position">AI Developer</div>
+                        <div class="description">
+                            - Xây dựng, phát triển Website dựa trên thiết kế có sẵn của công ty.<br>
+                            - Phát triển Backend, sử dụng Fullstack, sử dụng các Database, MySQL, SQL Server, NoSQL... và viết được các câu truy vấn.<br>
+                            - Sử dụng ngôn ngữ server-side (Python, Java, ...) để xây dựng các Web Service.
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="date-range">06/2021 - 04/2022</div>
+                        <div class="company">Công ty FPT Software</div>
+                        <div class="position">lập trình trí tuệ nhân tạo</div>
+                        <div class="description">
+                            - Thiết kế Website cũ trực tiếp cho các khách hàng.<br>
+                            - Sử dụng các công cụ: Figma, Canva, PTS và AI.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout for Activities and Skills -->
+            <div class="two-column">
+                <div>
+                    <!-- Activities -->
+                    <div class="section">
+                        <h2 class="section-title">Hoạt động</h2>
+                        <div class="section-content">
+                            <div class="experience-item">
+                                <div class="date-range">03/2022 - 05/2022</div>
+                                <div class="position">Giải ba bảng D Tin học trẻ cấp thành phố</div>
+                                <div class="description">
+                                    Giải 3 bảng A<br>
+                                    Đề tài: Thiết kế thiết bị thông minh dành cho cuộc sống.
+                                </div>
+                            </div>
+                            <div class="experience-item">
+                                <div class="date-range">06/2016 - 08/2017</div>
+                                <div class="position">Câu lạc bộ tin học FPT</div>
+                                <div class="description">Trưởng ban chuyên môn</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Awards -->
+                    <div class="section">
+                        <h2 class="section-title">Chứng chỉ - Giải thưởng</h2>
+                        <div class="section-content">
+                            <div class="award-item">
+                                <span class="award-year">2021</span>
+                                <span class="award-title">CHỨNG CHỈ LẬP TRÌNH WEB - FUNIX</span>
+                            </div>
+                            <div class="award-item">
+                                <span class="award-year">2021</span>
+                                <span class="award-title">CHỨNG CHỈ LẬP TRÌNH Python - FUNIX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Skills -->
+                    <div class="section">
+                        <h2 class="section-title">Kỹ năng</h2>
+                        <div class="section-content">
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <span class="skill-name">C++/Python</span>
+                                    <span class="skill-level">Fundamental</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Pyhton</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">NodeJS</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Bootstrap 5</span>
+                                    <span class="skill-level">Fundamental</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="section">
+                        <h2 class="section-title">Sở thích</h2>
+                        <div class="section-content">
+                            <ul class="interests-list">
+                                <li>Âm nhạc</li>
+                                <li>Du lịch</li>
+                                <li>Chụp ảnh</li>
+                                <li>Nấu ăn</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="section">
+                <h2 class="section-title">Dự án</h2>
+                <div class="section-content">
+                    <div class="project-item">
+                        <div class="project-title">TRANG WEB Học cùng AI</div>
+                        <div class="project-year">2024</div>
+                        <div class="project-description">
+                            <strong>Vị trí:</strong> Developer<br>
+                            <strong>Mô tả:</strong> Trang web có giao diện các thông tin để học cùng các công cụ như: cladue,chatgpt,germini... <br>
+                            <strong>Nhiệm vụ:</strong> Phát triển khóa học và bài tập.<br>
+                            <strong>Công nghệ:</strong> HTML, CSS
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">TRANG WEB XEM TIN TỨC</div>
+                        <div class="project-year">2024</div>
+                        <div class="project-description">
+                            <strong>Vị trí:</strong> Developer<br>
+                            <strong>Mô tả:</strong> Trang Web xem tin tức để thu thập thông tin mới nhất, người dùng có thể tìm kiếm các tin tức theo chủ đề.<br>
+                            <strong>Nhiệm vụ:</strong> Phát triển code về trang chủ và xử lý API.<br>
+                            <strong>Công nghệ:</strong> HTML, CSS
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">CV CÁ NHÂN</div>
+                        <div class="project-year">2024</div>
+                        <div class="project-description">
+                            <strong>Vị trí:</strong> Developer<br>
+                            <strong>Mô tả:</strong> Trang Web CV cá nhân online. Gồm các thông tin cá nhân cũng như kỹ năng nghề nghiệp.<br>
+                            <strong>Nhiệm vụ:</strong> Phát triển code về trang chủ và xử lý API.<br>
+                            <strong>Công nghệ:</strong> HTML, CSS
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="section">
+                <h2 class="section-title">Liên hệ</h2>
+                <div class="section-content">
+                    <ol class="contact-links">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Github</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
